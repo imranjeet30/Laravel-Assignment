@@ -29,7 +29,7 @@ Backend validation and clear error responses
 
 Frontend form with client-side minimal validation and API integration
 
-Clean, SOLID-friendly Laravel structure (Model, Repository/Services, Controller, FormRequest)
+Clean, SOLID-friendly Laravel structure (Model, Services, Controller, FormRequest)
 
 ## Backend
 
@@ -40,7 +40,7 @@ Clean, SOLID-friendly Laravel structure (Model, Repository/Services, Controller,
       Role.php
     Http/
       Controllers/
-        Api/UserController.php
+        UserController.php
       Requests/
         StoreUserRequest.php
     Services/
@@ -56,14 +56,18 @@ Clean, SOLID-friendly Laravel structure (Model, Repository/Services, Controller,
 /frontend
   src/
     components/
-      UserForm.jsx
-      UsersList.jsx
-    api/
-      userApi.js
-    App.jsx
-    index.jsx
+      EditUserModal.tsx
+      RoleBadge.tsx
+      RoleCheckboxGroup.tsx
+    lib/
+      api.ts
+    pages
+        CreateUser.tsx
+        Users.tsx
+    types.ts
+    App.tsx
+    index.tsx
   package.json
-README.md
 
 ## Prerequisites
 
@@ -118,6 +122,7 @@ Change to frontend folder and install dependencies:
 cd ../frontend
 npm install
 
+## frontend/.env
 Create .env with API URL (frontend will use this to call backend):
 
 REACT_APP_API_BASE_URL=http://localhost:8000/api/v1
@@ -130,7 +135,7 @@ React app usually runs at http://localhost:3000.
 
 .env (examples)
 
-Backend (backend/.env):
+## Backend (backend/.env):
 
 APP_NAME=Laravel
 APP_ENV=local
@@ -258,13 +263,7 @@ Run:
 
 php artisan db:seed --class=RoleSeeder
 
-Testing
-
 Backend:
-
-php artisan test
-
-Write tests for:
 
 Validation failures (missing email / not unique)
 
@@ -274,50 +273,10 @@ GET /api/users responses
 
 Frontend:
 
-npm test
-
-
 Troubleshooting
 
 SQLSTATE[HY000] [1045] — check DB credentials in .env
 
 unique validation failing on update — use unique:users,email,{$userId} for update scenarios
 
-CORS errors — add 
 \Barryvdh\Cors\HandleCors or configure app/Http/Middleware/HandleCors.php and set allowed_origins in config/cors.php
-
-Deliverables
-
-Link to GitHub repo containing both backend/ and frontend/ folders
-
-README.md (this file)
-
-.env.example files for both backend and frontend
-
-Migrations and seeders (roles seeded)
-
-Basic test coverage (recommended)
-
-Final notes / Tips to impress reviewers
-
-Keep controllers skinny — push business logic into Services or Repositories
-
-Follow PSR-12 coding standard for PHP; use type hints and return types
-
-Use resource classes (UserResource) for API responses
-
-Add API documentation (Postman collection or simple docs in docs/)
-
-Add a small architecture diagram (optional) showing flow: React → API → Service → Eloquent → DB
-
-If you want, I can:
-
-generate the StoreUserRequest and UserController code snippets,
-
-add the RoleSeeder / migration examples,
-
-create a small React form and users list components (JSX), or
-
-export this README as a file ready to commit.
-
-Tell me which of the above you'd like next and I will add it directly into the repository content here.
