@@ -1,0 +1,20 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+frontend/node_modules
+frontend/.env
+
+
+
+
+api/.phpunit.cache
+api/node_modules
+api/public/build
+api/public/hot
+api/public/storage
+api/storage/*.key
+api/vendor
+api.env
+api.env.backup
+api.env.production
+api.phpunit.result.cache
