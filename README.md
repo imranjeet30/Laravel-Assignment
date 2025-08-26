@@ -227,10 +227,12 @@ Use axios to call the API.
 
 After successful POST, redirect to /users list.
 
-Example userApi.js
+Example api.ts
 
 import axios from 'axios';
 const api = axios.create({ baseURL: process.env.REACT_APP_API_URL });
+
+Creat User
 export const createUser = (payload) => api.post('/users', payload);
 export const getUsers = () => api.get('/users');
 
