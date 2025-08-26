@@ -208,17 +208,6 @@ Success response (201):
 
 { "success": true, "user": { "id":1, "full_name":"Ada Lovelace", "email":"ada@example.com", "roles":["author","editor"] } }
 
-GET /api/users — returns users grouped by role:
-
-{
-  "roles": {
-    "author": [{ "id":1, "full_name":"Ada Lovelace", "email":"ada@example.com" }],
-    "editor": [...]
-  }
-}
-
-You can also implement GET /api/users?role=author to return users for a specific role.
-
 Frontend (React) Implementation Notes
 
 Use functional components + hooks (useState, useEffect, useNavigate from react-router-dom).
@@ -244,7 +233,6 @@ const handleSubmit = async (e) => {
     await createUser({ full_name, email, roles });
     navigate('/users');
   } catch (err) {
-    // show validation errors
   }
 };
 
@@ -252,7 +240,7 @@ Display users grouped by role — call getUsers() and render the roles object.
 
 Seeders
 
-Create a RoleSeeder to seed the four roles (key + label):
+Created a RoleSeeder to seed the four roles (key + label):
 
 [
   ['key' => 'author', 'label' => 'Author'],
